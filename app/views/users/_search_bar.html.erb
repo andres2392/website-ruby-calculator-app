@@ -1,0 +1,15 @@
+<div class="search-area">
+    <h3>Search for pumps by name</h3>
+    <%= form_tag search_pump_path, remote: true, method: :get do %>
+        <div class="form-group row">
+            <div class="col-sm-9 no-right-padding">
+                <%= text_field_tag :pump, params[:pump], placeholder: "Pump Name", autofocus: true, class: "form-control form-control-lg" %>
+            </div>
+            <div class="col-sm-3 no-left-padding">
+                <%= button_tag type: :submit, class: "btn btn-xs btn-danger" do %>
+                    <%= fa_icon 'search 2x' %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+</div>

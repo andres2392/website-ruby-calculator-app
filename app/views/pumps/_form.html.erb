@@ -1,0 +1,47 @@
+<%= form_with(model: pump, local: true) do |form| %>
+  <% if pump.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pump.errors.count, "error") %> prohibited this pump from being saved:</h2>
+
+      <ul>
+        <% pump.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :volt %>
+    <%= form.number_field :volt %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phase %>
+    <%= form.number_field :phase %>
+  </div>
+
+  <div class="field">
+    <%= form.label :pump_assembly %>
+    <%= form.number_field :pump_assembly %>
+  </div>
+
+  <div class="field">
+    <%= form.label :link %>
+    <%= form.text_field :link %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<% if !@tracked_pumps.empty? %>
+    <h3>Pump Search History</h3>
+    <div class="row">
+        <div class="col-9">
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">MODEL</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">PUMP ASSEMBLY</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @tracked_pumps.each do |pump| %>
+                        <tr>
+                            <th scope="row"><%= pump.name %></th>
+                            <td><%= pump.description %></td>
+                            <td><%= pump.pump_assembly %></td>
+                            <td><%= link_to 'Remove',user_pump_path(pump) , method: :delete, data: {confirm: 'Are you sure?'},
+                                                        class: 'btn btn-sm btn-finder-search' %>  <%= link_to 'Read More', pump, class:'btn btn-xs btn-danger' %> </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+        </table>
+        </div>
+    </div>
+<% end %>

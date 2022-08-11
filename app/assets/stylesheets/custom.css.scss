@@ -1,0 +1,148 @@
+@import 'bootstrap/dist/css/bootstrap';
+
+#body{
+    font-family: 'Roboto',Helvetica,Arial,Lucida,sans-serif;
+
+}
+.container-app{
+    background-color: #E0E0E0;
+    width: 100%;
+}
+
+body {
+    width: 100%;
+}
+
+.navbar{
+    background-color: black;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+}
+
+#cont-pump-result{
+    margin: 5%;
+    width: 100%;
+}
+
+.search-area{
+    padding-top:50px
+}
+
+.no-right-padding{
+    padding-right: 0 !important;
+}
+.no-left-padding{
+    padding-left: 0 !important;
+}
+.results-block {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+.logout-button {
+    margin-right: 5px;
+}
+
+.logout-button {
+    margin-right: 10px;
+}
+
+.user-name{
+    margin-top: 3.5%;
+    color: white;
+    padding-right: 10px;
+    font-weight: lighter;
+    font-size: medium;
+}
+.jumbotron{
+    margin-top: 3.5%;
+    padding-right: 5px;
+    background-color: aliceblue;
+}
+
+table, th, td {
+    margin: 3.5%;
+    padding: 5px;
+  }
+  
+  table {
+    border: black 1px;
+    border-radius:6px;
+    -moz-border-radius:6px;
+}
+
+
+
+/* PUMP SHOW CSS */
+/* Split the screen in half */
+
+
+.row-full{  
+    width: 100vw;
+   }
+   
+.xop-container {
+	display: flex;
+    width: 100%;
+    align-content: center;
+}
+
+.xop-left {
+	background-size: cover;
+	background-position: center;
+	flex: 1;
+	padding: 1rem;
+	transition: all .2s ease-in-out;
+    
+}
+.xop-right {
+	background-size: cover;
+	background-position: center;
+	flex: 1;
+	padding: 1rem;
+	transition: all .2s ease-in-out;
+}
+
+.centered-curve{
+    padding-top: 20px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+
+/* Button Quick Search */
+
+.btn-finder-search{
+    background-color: black;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.overview{
+    margin-bottom: 20px;
+}
+
+.overview-info{
+    margin-top: 50px;
+}
+
+.right-pump-show{
+    margin-top: 60px;
+}
+
+/* IMAGE HOME 
+
+.container-index{
+    width: 100vw;
+    position: relative;
+    margin-left: -34vw;
+    height: 100px;
+    left: 20%;
+}
+*/
+

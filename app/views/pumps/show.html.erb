@@ -1,0 +1,393 @@
+
+
+<p id="notice"><%= notice %></p>
+
+<div style="width: 100%; margin: 0">
+  <section class="xop-container row-full">
+    <div class="xop-left">
+      <h1 style="text-align:center" class="overview"> Overview </h1>
+      
+      <% if @pump.name.include? "PW" %>
+
+        <p style="text-align:justify">The Pearl range of submersible pumps are made of corrosion and abrasion resistant stainless steel and have been developed in accordance with state-of-the-art technology.</p>
+        <p style="text-align:justify">They are perfect for pressure boosting application, irrigation and water transfer. </p>
+        <% if @pump.name.include? "PWS" %>
+          <p style="text-align:justify" > Stainless Steel water pumps PWS are made more for agricultural-irrigation, livestock watering, etc. In municipal and Industrial and pressure boosting like fountains and they come in 4″, 6″, 8″, and 10″.</p>
+        <% end %>
+
+      <% end %>
+      
+      <table class="table table-striped overview-info">
+        <thead>
+          <tr>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">MODEL</th>
+            <td><%= @pump.name %></td>
+          </tr>
+          <tr>
+            <th scope="row">DESCRIPTION</th>
+            <td><%= @pump.description%></td>
+          </tr>
+          <tr>
+            <th scope="row">WEIGHT(LB)</th>
+            <td><%= @pump.weight_pump%></td>
+          </tr>
+          <% if @pump.pump_assembly == "PUMP AND MOTOR" || @pump.pump_assembly == "PUMP" %>
+            
+           <% if false %>
+              <th scope="row">Pump Volt(Volt):</th>
+              <td><%= @pump.volt%></td>
+            </tr>   
+            <tr>
+            <% end %>
+              <th scope="row">Pump Phase:</th>
+              <td><%= @pump.phase%></td>
+            </tr>   
+            <tr>
+              <th scope="row">Pump Amp(Amp):</th>
+              <td><%= @pump.pump_amp%></td>
+            </tr>       
+          <% end %>
+          <% if @pump.name.include? "VPS" and @pump.pump_assembly == "PUMP" %>
+            <tr>
+              <th scope="row">Pump Motor Type:</th>
+              <td><%= @pump.pump_motor_type%></td>
+            </tr> 
+          <% end %>
+        </tbody>
+      </table>
+
+      <div class="form-group row">
+        <label class="col-sm-2"></label>
+        <div class="col-8">
+          <%= link_to "Read more", @pump.link, class: 'btn btn-xs btn-danger logout-button' %>
+        </div>
+      </div>
+    </div>
+    <div class="xop-right">
+      <article>
+        <div class="split-pump-show right-pump-show">
+          <div class="centered">
+            <% if @pump.name.include? "4PWP" %>
+              <% if @pump.pump_assembly.include? "PUMP AND MOTOR" %>
+                <%= image_tag "submersible/4PWP-PUMP.jpeg", height: 400%>
+              <% else %>
+                <%= image_tag "submersible/4PWP1.jpeg", height: 400%>
+              <% end %>
+            <% end %>
+
+            <% if @pump.name.include? "4PWS" %>
+              <%= image_tag "submersible/4PWS.jpeg", height: 400%>
+            <% end %>
+
+            <% if @pump.name.include? "6PWS" %>
+              <%= image_tag "submersible/6PWS.jpeg", height: 400%>
+            <% end %>
+
+            <% if @pump.name.include? "10PWS" or @pump.name.include? "8PWS" %>
+              <%= image_tag "submersible/10PWS.jpeg", height: 400%>
+            <% end %>
+           
+            
+            <% if @pump.name.include? "VPS" %>
+              <% if @pump.pump_assembly.include? "PUMP END" %>
+                <%= image_tag "vps/vps.jpeg", height: 400%>
+              <% else %> 
+                <% if @pump.pump_motor_type.include? "NEMA" %> 
+                  <%= image_tag "vps/vps-nema.jpeg", height: 400%>
+                <% end %>
+                <% if @pump.pump_motor_type.include? "IEC" %>      
+                  <%= image_tag "vps/vps-iec.jpeg", height: 400%>
+                <% end %>
+              <% end %>
+            <% end %>
+
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</div>
+
+
+<div class="container-pump-charts">
+  <div class="center">
+    <h3 class="overview"> Performance Curve </h3>
+    <% if @pump.name.include? "4PWP" %>
+      <% if @pump.pump_assembly == "PUMP END" %>
+        <%= image_tag "submersible/#{@pump.name}.jpg", height: 550%>
+      <% else %>
+          <%= image_tag "submersible/#{@pump_show}.jpg", height: 550%>
+      <% end %>
+    <% end %>
+    <% if @pump.name.include? "4PWS" %>
+      <% if @pump.pump_assembly == "PUMP END" %>
+        <%= image_tag "submersible/#{@pump.name}.jpg", height: 550%>
+      <% else %>
+        <%= image_tag "submersible/#{@pump_show}.jpg", height: 550%>
+      <% end %>
+    <% end %>
+
+    <% if @pump.name.include? "6PWS" or @pump.name.include? "8PWS" or  @pump.name.include? "10PWS"%>
+        <%= image_tag "submersible/#{@pump_show}.jpg", height: 550%>
+    <% end %>
+
+    <% if @pump.name.include? "VPS"%>
+      <%= image_tag "vps/#{@pump_show}.jpg", height: 550%>
+    <% end %>
+    
+
+  </div>
+
+
+<!-- GRAPH CHART
+  <h1 style="text-align:center"> Recommended Range </h1>
+  <div class="centered">
+    <%= line_chart @pump.graph_points , points: false, 
+            library:{
+                    hAxis:
+                        {title: "FT"}, 
+                    vAxis: {title: "GPM"}
+                  }, 
+             adapter: "google",title:"Operation Range Performance", label: "FT" %>
+  </div>
+-->
+
+  <% if @pump.name.include? "PW" %>
+  <div class=" w-100 d-block d-sm-table container container-operation-chart">
+      <h1 style="text-align:center"> Table of Operation </h1>
+      <!-- Table of chart -->
+      <div class="col-1" style="text-align: center; font-size: 10px;">
+          <table border="1" align="center" cellpadding="0" cellspacing="0">
+          <col width="76">
+          <col width="46">
+          <col width="47" span="18">
+          <tr style="background-color:#F9FAFB;" >
+            <td rowspan="5" width="76">MODEL</td>
+            <td rowspan="5" width="46">STAGES</td>
+            <td colspan="2" rowspan="3" width="94">MOTOR</td>
+            <% if @pump.graph_points_table[0].count == 8 %>
+              <td colspan="16" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 9 %>
+              <td colspan="26" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 10 %>
+              <td colspan="24" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 11 %>
+              <td colspan="24" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 12 %>
+              <td colspan="24" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 13 %>
+              <td colspan="26" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 14 %>
+              <td colspan="28" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 15 %>
+              <td colspan="30" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 16 %>
+              <td colspan="32" width="752">Q = FLOW</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 17 %>
+            <td colspan="34" width="752">Q = FLOW</td>
+            <% end %>
+          </tr>
+          
+          <tr style="background-color:#E7E6E6;" >
+            <!-- FLOW PARAMETERS -->
+            <td colspan="2">l/min   0</td>
+            <% if @pump.name.include? "PWP" %>
+              <% for i in 1.. @pump.graph_points_table[0].count-3 do %>
+                <td colspan="2"> <%= @pump.graph_points_table[0][i] %></td>
+              <% end %>
+            
+              <td style="background-color:#F5F5F7;" colspan="4" rowspan="2">PUMP END</td>
+            
+            </tr>
+            <tr style="background-color:#E7E6E6;">
+              <td colspan="2">gpm   0</td>
+              <% for i in 1.. @pump.graph_points_table[0].count-3 do %>
+                <td colspan="2"> <%= '%.2f' % (@pump.graph_points_table[0][i] * 0.264172)%></td>
+              <% end %>
+            <% else %>
+            <% for i in 1.. @pump.graph_points_table[0].count-1 do %>
+                <td colspan="2"> <%= @pump.graph_points_table[0][i] %></td>
+              <% end %>
+              <tr style="background-color:#E7E6E6;">
+              <td colspan="2">gpm   0</td>
+              <% for i in 1.. @pump.graph_points_table[0].count-1 do %>
+              <td colspan="2"> <%= '%.2f' % (@pump.graph_points_table[0][i] * 0.264172)%></td>
+              <% end %>
+            <% end %>
+          </tr>
+          <tr style="background-color:#F9FAFB;" >
+            <td rowspan="2">KW</td>
+            <td rowspan="2">HP</td>
+            <% if @pump.graph_points_table[0].count == 8 %>
+              <td colspan="12">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 9 %>
+              <td colspan="22">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 10 %>
+              <td colspan="18">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 11 %>
+              <td colspan="19">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 12 %>
+              <td colspan="21">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 13 %>
+              <td colspan="23">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 14 %>
+            <td colspan="24">H = TOTAL HEAD IN METERS / FEET</td>
+            <% end %>
+            <% if @pump.graph_points_table[0].count == 15 %>
+            <td colspan="26">H = TOTAL HEAD IN METERS / FEET</td>
+          <% end %>
+            <% if @pump.graph_points_table[0].count == 16 %>
+            <td colspan="28">H = TOTAL HEAD IN METERS / FEET</td>
+          <% end %>
+            <% if @pump.graph_points_table[0].count == 17 %>
+            <td colspan="34">H = TOTAL HEAD IN METERS / FEET</td>
+          <% end %>
+          <% if @pump.name.include? "PWP" %>
+            <td colspan="2">LENGTH</td>
+            <td colspan="2">WEIGHT</td>
+          <% end %>
+          </tr>
+          <tr style="background-color:#E7E6E6;">
+          <% if @pump.name.include? "PWP" %>
+            <% for i in 1.. @pump.graph_points_table[0].count-2 do %>
+              <td>m</td>
+              <td>ft</td>
+            <% end %>  
+              <td>mm</td>
+              <td>in</td>
+              <td>kgs</td>
+              <td>lbs</td>
+            <% else %>
+              <% for i in 1.. @pump.graph_points_table[0].count do %>
+                <td>m</td>
+                <td>ft</td>
+              <% end %> 
+            <% end %>
+          </tr>
+          <tr>
+            <td style="padding: 10px 15px 15px 10px;"><%= @pump.name %></td>
+            <td><%= @pump.stages_pump %></td>
+            <td><%= '%.2f' % (@pump.hp_pump * 0.745699872) %></td>
+            <td><%= @pump.hp_pump %></td>
+            <% if @pump.name.include? "PWP" %>
+            <% for i in 0.. @pump.graph_points_table[2].count-3 do %>
+                <td> <%= @pump.graph_points_table[1][i] %></td>
+                <td> <%= @pump.graph_points_table[2][i] %></td>
+              <% end %>
+                <td> <%= '%.2f' % ( @pump.graph_points_table[2][@pump.graph_points_table[2].count-2] * 25.4 ) %> </td>
+                <td><%= @pump.graph_points_table[2][@pump.graph_points_table[2].count-2] %></td>
+                <td><%= '%.2f' % ( (@pump.graph_points_table[2][@pump.graph_points_table[2].count-1]) * 0.4535) %> </td>
+                <td><%= @pump.graph_points_table[2][@pump.graph_points_table[2].count-1] %></td>
+            <% else %>
+              <% for i in 0.. @pump.graph_points_table[2].count-1 do %>
+                <td> <%= @pump.graph_points_table[1][i] %></td>
+                <td> <%= @pump.graph_points_table[2][i] %></td>
+              <% end %>
+            <% end %>
+          </tr>
+        </table>
+      </div>
+  </div>
+  <% end %>
+
+  <!-- Table function -->
+
+  <% if @pump.perform_points_table[0] != nil %>
+    <!-- TABLE PERFORMANCE -->
+    <div class="col-10" style="text-align: center;  center; font-size: 11px;">
+      <table border="1" align="center" cellpadding="0" cellspacing="0">
+      <col width="88">
+      <col width="47" span="21">
+      <tr style="background-color:#F9FAFB;">
+        <td rowspan="2" width="88">MODEL</td>
+        <td rowspan="2" width="47">HP</td>
+        <td rowspan="2" width="47">PSI</td>
+        <td colspan="19" width="893">DEPTH    TO WATER IN FEET / FLOW IN GPM</td>
+      </tr>
+      <tr>
+        <% for i in 1.. @pump.perform_points_table[0].count-1 do %>
+          <td> <%=@pump.perform_points_table[0][i]%></td>
+        <% end %>
+      </tr>
+
+      <% for x in 1.. @pump.perform_points_table.count-1 do %>
+        <tr>
+            <% if x == 1 %> 
+              <% if @pump.perform_points_table.count <= 7 %>
+                <td rowspan="5" style="padding: 10px 15px 15px 10px;"><%= @pump.name %> </td>
+              <% end %>
+              <% if @pump.perform_points_table.count >= 8 %>
+                <td rowspan="6" style="padding: 10px 15px 15px 10px;"><%= @pump.name %> </td>
+              <% end %>
+              <td><%= @pump.hp_pump %></td>
+            <% elsif x == @pump.perform_points_table.count-1 %>
+              <td>Shut-off PSI</td>
+              <td>&nbsp;</td>
+            <% else %>
+              <td>&nbsp;</td>
+            <% end %>
+
+            <% for i in 0.. @pump.perform_points_table[0].count-1 do %>
+              <% if @pump.perform_points_table[x][i] != 0 %>
+                <td style="background-color:#E7E6E6;"> <%=  @pump.perform_points_table[x][i] %> </td>
+              <% else %>
+                <td>&nbsp;</td>
+              <% end %>
+            <% end %>
+          
+        </tr>
+      <% end %>
+      <tr>
+      </tr>
+    </table>
+    </div>
+  <% end %>
+
+<!-- TABLE IN COLORS 
+<div class="col-10">
+   <table >
+   <tr>
+     <td style="background-color:tomato; color: white;" > GPM: </td>
+     <% for i in 0.. @pump.graph_points.count-1 do %>
+        <td style="background-color:tomato; color: white;"> <%= @pump.graph_points[i][0] %> </td>  
+      <% end %>
+    </tr>
+    <tr>
+      <td style="background-color:blue; color: white;"> FT: </td>
+      <% for i in 0.. @pump.graph_points.count-1 do %>
+          <td style="background-color:blue; color: white;"> <%= @pump.graph_points[i][1] %> </td>
+      <% end %>
+    </tr>
+   </table>
+
+  </div>
+  -->
+   
+   <%= link_to 'Back', my_search_path %>
+</div>
+
+</div>
+
+
+
+
+

@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pumps</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>MODEL</th>
+      <th>DESCRIPTION</th>
+      <th>VOLTAGE</th>
+      <th>PHASE</th>
+      <th>PUMP ASSEMBLY</th>
+      <th>GRAPH POINTS</th>
+      <th>MORE INFO</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pumps.each do |pump| %>
+      <tr>
+        <td><%= pump.name %></td>
+        <td><%= pump.description %></td>
+        <td><%= pump.volt %></td>
+        <td><%= pump.phase %></td>
+        <td><%= pump.pump_assembly %></td>
+        <td><%= pump.graph_points %></td>
+        <td><%= pump.link %></td>
+        <td><%= link_to 'Show', pump, class:'btn btn-sm btn-success' %></td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pump', new_pump_path, class:'btn btn-sm btn-warning' %>
+
+<br>
+

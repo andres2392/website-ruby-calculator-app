@@ -1,0 +1,127 @@
+
+
+<%= javascript_pack_tag 'finder_form' %>
+
+<div class="search-area">
+    <%= form_tag system_finder_path,remote: true, method: :get do %>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">FLOW (GPM):</label>
+            <div class="col-sm-3">
+                <%= text_field_tag :gpm, params[:gpm], placeholder: "GPM", autofocus: true, 
+                                class: "form-control form-control-lg" %>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">HEAD (Ft):</label>
+            <div class="col-sm-3">
+                <%= text_field_tag :ft, params[:ft], placeholder: "FT", autofocus: true, 
+                                class: "form-control form-control-lg" %>
+            </div>
+        </div>
+
+        
+        <!-- 
+        PUMP TYPE 
+        -->
+        
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PUMP TYPE:</label>
+            <div class="col-sm-3">
+                <%= select_tag :pump_type, options_for_select([
+                    ['Choose...','0'],
+                    ['SUBMERSIBLE','1'],
+                    ['VERTICAL','2'],
+                    ['ABOVE GROUND','3']]), id: 'pump_type', class: "form-control form-control-lg" %>
+            </div>
+        </div>
+
+
+        <div class="form-group row" id="div-pump-assembly"  style="display: none;">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-3">
+            <%= select_tag :pump_assembly, options_for_select([
+                ['Choose...','0'],
+                ['PUMP END','1'],
+                ['PUMP END AND MOTOR','2']]), id: 'select-pump-assembly' , class: "form-control form-control-lg" %>  
+            </div>
+        </div>
+
+
+        <div class="form-group row" id="div-submersible-type" style="display: none;">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-3">
+
+            <%= select_tag :pump_submersible_type, options_for_select([
+                ['Choose...','0'],
+                ['STAINLESS STEEL','1'],
+                ['STANDARD','2']]), id: 'select-submersible-type', class: "form-control form-control-lg" %>  
+        
+            </div>
+        </div>
+
+        <div class="form-group row" id="div-motor-volt" style="display: none;">
+                <label class="col-sm-2 col-form-label">VOLTAGE:</label>
+                <div class="col-sm-3">
+
+            <%= select_tag :pump_motor_volt, options_for_select([
+                ['Choose...','0'],
+                ['115','1'],
+                ['230','2'],
+                ['115/230','3'],
+                ['460','4'],
+                ['230/460','5'],
+                ['ANY','6']]), id: 'select-motor-volt', class: "form-control form-control-lg" %> 
+  
+                </div>
+        </div>
+
+
+        <div class="form-group row" id="div-motor-phase" style="display: none;">
+            <label class="col-sm-2 col-form-label">PHASE:</label>
+            <div class="col-sm-3">
+ 
+            <%= select_tag :pump_motor_phase, options_for_select([
+                ['Choose...','0'],
+                ['1 PHASE','1'],
+                ['3 PHASE','2'],
+                ['ANY','3']]), id: 'select-motor-phase' , class: "form-control form-control-lg" %>  
+           
+            </div>
+        </div>
+
+
+        <div class="form-group row" id="div-motor-wire" style="display: none;">
+            <label class="col-sm-2 col-form-label">MOTOR WIRING:</label>
+            <div class="col-sm-3">
+                <%= select_tag :pump_motor_wire, options_for_select([
+                    ['Choose...','0'],
+                    ['2 WIRE','1'],
+                    ['3 WIRE','2'],
+                    ['ANY','3']]), id: 'select-motor-wire' , class: "form-control form-control-lg" %>  
+            </div>
+        </div>
+
+        <div class="form-group row" id="div-motor-type" style="display: none;">
+            <label class="col-sm-2 col-form-label">VPS MOTOR TYPE:</label>
+            <div class="col-sm-3">
+                <%= select_tag :pump_motor_type, options_for_select([
+                    ['Choose...','0'],
+                    ['IEC','1'],
+                    ['NEMA-TEFC','2'],
+                    ['NEMA-ODP','3'],
+                    ['ANY','4']]), id: 'select-motor-type' , class: "form-control form-control-lg" %>  
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <%= button_tag type: :submit, class: "btn btn-finder-search" do %>
+                Submit
+                <% end %>
+            </div>
+        </div>
+    
+    <% end %>
+</div>
+
+

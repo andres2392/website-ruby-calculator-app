@@ -1,0 +1,24 @@
+<div class="results-block">
+    <%= render 'layouts/messages' %>
+</div>
+
+<% if @pump %>
+    <div class="card card-header results-block col-9">
+        <strong>Name:</strong> <%= @pump.name %>
+        <strong>Description:</strong> <%= @pump.description %>
+        <% if current_user.can_track_pump?(@pump.name) %>
+        <%= link_to 'Add to History' , user_pumps_path(user:current_user, pump_name: @pump.name),
+                                      class:"btn btn-xs btn-success", method: :post %>
+        <% else %>
+            <span class="badge badge-secondary">
+                Pump already added
+            <% if !current_user.under_pump_limit? %>
+                10 pump
+            <% end %>
+            <% if current_user.pump_already_tracked?(@pump.name) %>
+                this pump
+            <% end %>
+            </span>
+        <% end %>
+    </div>
+<% end %>

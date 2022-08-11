@@ -1,0 +1,57 @@
+<div class="results-block">
+    <%= render 'layouts/messages' %>
+</div>
+
+<% if @pumps.count != 0 %>
+    <div class="row">
+        <div class="col-10">
+            <h3>PUMPS FOUND</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">MODEL</th>
+                        <th scope="col">DESCRIPTION</th>
+                        <th scope="col">PUMP ASSEMBLY</th>
+                        <th scope="col">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% @pumps.each do |pump| %>
+                        <tr>
+                            <th scope="row"><%= pump.name %></th>
+                            <td><%= pump.description %></td>
+                            <td><%= pump.pump_assembly %></td>
+                            <%if current_user %>
+                                <% if current_user.can_track_pump?(pump.name) %>
+                                    <td><%= link_to 'Add to History' , user_pumps_path(user:current_user, pump_name: pump.name),
+                                                                class:"btn btn-xs btn-primary", method: :post %>  
+                                        <p></p>
+                                        <%= link_to 'Read More', pump, class:'btn btn-xs btn-danger' %></td>
+                                
+                                <% else %>
+                                    
+                                        <td><span class="badge badge-secondary">
+                                            Pump already added <%= link_to 'Read More', pump, class:'btn btn-xs btn-danger' %></td>
+                                        <% if !current_user.under_pump_limit? %>
+                                            <td>10 pump <%= link_to 'Read More', pump, class:'btn btn-xs btn-danger' %></td>
+                                        <% end %>
+                                        </span>
+                                    <% end %>
+                            <% else %>
+                                <td> <%= link_to 'Read More', pump, class:'btn btn-xs btn-danger' %></td>
+                            <% end %>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+<else> 
+    <% if @pumps.count == 0  %>  
+        <div class="row">
+            <div class="col-10">
+                <h3>Pumps Not Found</h3> 
+            </div>
+        </div>  
+    <% end %>                                                       
+<% end %>

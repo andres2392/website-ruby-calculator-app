@@ -1,0 +1,2 @@
+module UserPumpsHelper
+end

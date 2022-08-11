@@ -1,0 +1,82 @@
+<section class="xop-container row-full">
+<div class="xop-left">
+  <h1 style="text-align:center" class="overview"> Overview </h1>
+  
+  <% if @pump.name.include? "PW" %>
+
+    <p style="text-align:justify">The Pearl range of submersible pumps are made of corrosion and abrasion resistant stainless steel and have been developed in accordance with state-of-the-art technology.</p>
+    <p style="text-align:justify">They are perfect for pressure boosting application, irrigation and water transfer. </p>
+    <% if @pump.name.include? "PWS" %>
+      <p style="text-align:justify" > Stainless Steel water pumps PWS are made more for agricultural-irrigation, livestock watering, etc. In municipal and Industrial and pressure boosting like fountains and they come in 4″, 6″, 8″, and 10″.</p>
+    <% end %>
+
+  <% end %>
+  
+  <table class="table table-striped overview-info">
+    <thead>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">MODEL</th>
+        <td><%= @pump.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">DESCRIPTION</th>
+        <td><%= @pump.description%></td>
+      </tr>
+      <tr>
+        <th scope="row">WEIGHT(LB)</th>
+        <td><%= @pump.weight_pump%></td>
+      </tr>
+      <% if @pump.pump_assembly == "PUMP AND MOTOR" %>
+        <tr>
+          <th scope="row">Pump Volt(Volt):</th>
+          <td><%= @pump.volt%></td>
+        </tr>   
+        <tr>
+          <th scope="row">Pump Phase:</th>
+          <td><%= @pump.phase%></td>
+        </tr>   
+        <tr>
+          <th scope="row">Pump Amp(Amp):</th>
+          <td><%= @pump.pump_amp%></td>
+        </tr>       
+
+    <% end %>
+    </tbody>
+  </table>
+
+  <div class="form-group row">
+    <label class="col-sm-2"></label>
+    <div class="col-8">
+      <%= link_to "Read more", @pump.link, class: 'btn btn-xs btn-danger logout-button' %>
+    </div>
+  </div>
+</div>
+<div class="xop-right">
+  <article>
+    <div class="split-pump-show right-pump-show">
+      <div class="centered">
+        <% if @pump.name.include? "4PWP" %>
+          <%= image_tag "4PWP.jpeg", height: 400%>
+        <% end %>
+
+        <% if @pump.name.include? "4PWS" %>
+          <%= image_tag "4PWS.jpeg", height: 400%>
+        <% end %>
+
+        <% if @pump.name.include? "6PWS" %>
+          <%= image_tag "6PWS.jpeg", height: 400%>
+        <% end %>
+
+        <% if @pump.name.include? "10PWS" or @pump.name.include? "8PWS" %>
+          <%= image_tag "10PWS.jpeg", height: 400%>
+        <% end %>
+
+      </div>
+    </div>
+  </article>
+</div>
+</section>

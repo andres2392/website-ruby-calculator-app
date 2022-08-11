@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+<div class="container">
+  <%= link_to image_tag("Logo-Pearl-WaterSystems.png"), root_path, class: 'navbar-brand' %>
+  
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+        <%= link_to_in_li "Quick Search", find_pump_path, class:'nav-link' %>
+        </li>
+        <% if current_user %>
+          <%= link_to_in_li "Search History", my_search_path, class:'nav-link' %>
+          </li>
+        
+        <li class="nav-item">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Profile
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          
+            <%= link_to edit_user_registration_path, class: 'dropdown-item' do %>
+              <%= fa_icon 'edit' %> Edit profile
+            <% end %>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <% end %>
+      </ul>
+
+  
+    
+  <ul class="nav navbar-right ml-auto">
+    <% if current_user %>
+        <li class='nav-item user-name'>
+            <%= fa_icon 'user' %> <%= current_user.full_name %>
+        </li>
+        <li class="nav-item"><%= link_to('Logout', destroy_user_session_path,
+        class: 'btn btn-xs btn-danger logout-button', title: 'Logout', :method => :delete) %></li>
+    <% else %>
+        <li class="nav-item">
+          <%= link_to('Sign In', new_user_session_path, class: 'btn btn-primary', title: 'Sign In') %>
+        </li>
+    <% end %>
+  </ul>
+
+  </div>
+</div>
+</nav>
